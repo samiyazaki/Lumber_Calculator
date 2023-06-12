@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Calculator</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div class="input-section">
+    <h1>Lumber Calculator</h1>
+    <div>
         <label for="length">Length (feet): </label>
-        <input type="text" id="length">
+        <input type="text" id="length" required>
     </div>
-
-    <div class="input-section">
+    <div>
         <label for="width">Width (inches): </label>
-        <input type="text" id="width">
+        <input type="text" id="width" required>
     </div>
-
-    <div class="input-section">
+    <div>
         <label for="thickness">Thickness (inches): </label>
-        <input type="text" id="thickness">
+        <input type="text" id="thickness" required>
     </div>
-
-    <div class="input-section">
-        <label for="pieces">Number of pieces: </label>
-        <input type="number" id="pieces">
+    <div>
+        <label for="pieces">Number of Pieces: </label>
+        <input type="number" id="pieces" required>
     </div>
-    
-    <button id="calculate-btn">Calculate</button>
-    <p id="linear-feet"></p>
-    <p id="board-feet"></p>
+    <div>
+        <button id="calculate-btn">Calculate</button>
+        <label for="save-label">Save As: </label>
+        <input type="text" id="save-label" required>
+        <button id="save-btn">Save</button>
+    </div>
+    <div id="linear-feet"></div>
+    <div id="board-feet"></div>
     <script src="script.js"></script>
 </body>
 </html>
