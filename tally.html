@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wood Length Tally</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-link">Lumber Calculator</a>
+        <a href="tally.html" class="navbar-link">Wood Length Tally</a>
+    </nav>
+    <div class="container">
+        <div class="tally">
+            <h1>Wood Length Tally</h1>
+            <div>
+                <label for="length">Length (feet): </label>
+                <input type="text" id="length" required>
+            </div>
+            <div>
+                <label for="pieces">Number of Pieces: </label>
+                <input type="number" id="pieces" required>
+            </div>
+            <div>
+                <button id="add-btn">Add to Tally</button>
+            </div>
+            <div>
+                <h2>Tally Summary</h2>
+                <table id="tally-summary">
+                    <thead>
+                        <tr>
+                            <th>Label</th>
+                            <th>Length (feet)</th>
+                            <th>Number of Pieces</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tally-body"></tbody>
+                </table>
+            </div>
+            <div>
+                <button id="calculate-btn">Calculate Total</button>
+                <div id="total"></div>
+            </div>
+        </div>
+    </div>
+    <script src="tally.js"></script>
+</body>
+</html>
