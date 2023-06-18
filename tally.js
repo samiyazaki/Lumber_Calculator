@@ -51,3 +51,57 @@ document.getElementById('calculate-btn').addEventListener('click', function() {
     const totalDisplay = document.getElementById('total');
     totalDisplay.innerText = `Total Length: ${totalLength.toFixed(2)} feet | Total Pieces: ${totalPieces}`;
 });
+
+document.getElementById('export-btn').addEventListener('click', function() {
+    // Get the tally data from the table
+    const tallyTable = document.getElementById('tally-summary');
+    const data = [
+        ['Label', 'Length (feet)', 'Number of Pieces', 'Total Length (feet)', 'Total Pieces'],
+    ];
+
+    let totalLength = 0;
+    let totalPieces = 0;
+
+    for (let i = 0; i < tallyTable.rows.length - 1; i++) {
+        const row = tallyTable.rows[i + 1];
+        const label = row.cells[0].innerText;
+        const length = row.cells[1].innerText;
+        const pieces = row.cells[2].innerText;
+        const itemTotalLength = parseFloat(length) * parseFloat(pieces);
+        totalLength += itemTotalLength;
+        totalPieces += parseFloat(pieces);
+        data.push([label, length, pieces, itemTotalLength.toFixed(2), '']);
+    }
+
+    data.push(['', '', '', totalLength.toFixed(2), totalPieces]);
+
+    // Create a new workbook
+    const workbook = XLSX.utils.book_new();
+    const sheet = XLSX.utils.aoa_to_sheet(data);
+
+    // Add the sheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, sheet, 'Tally Data');
+
+    // Convert the workbook to an Excel file
+    const excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Save the Excel file
+    saveAsExcelFile(excelFile, 'tally_data.xlsx');
+});
+
+function saveAsExcelFile(data, filename) {
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+
+    document.body.appendChild(a);
+    a.click();
+
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+
