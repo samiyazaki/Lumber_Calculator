@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cut Sheet Calculator</h1>
+        <div class="instructions">
+            <p>Enter the details for each part:</p>
+            <p>- Item Name: Enter the name of the item.</p>
+            <p>- Lengths Cut: Enter the lengths you cut for each part, separated by commas.</p>
+            <p>- Cut Into: Enter what you cut each length into for each part, separated by commas.</p>
+            <p>Click on the "Add" button to add the part to the calculator.</p>
+            <p>The calculator will calculate the difference between lengths cut and lengths cut into.</p>
+            <p>A green checkmark will indicate equal lengths, and a red cross will indicate unequal lengths.</p>
+            <p>Use the "Export to Excel" button to export the calculator data to an Excel spreadsheet.</p>
+        </div>
+        <div>
+            <label for="item-name">Item Name: </label>
+            <input type="text" id="item-name" required>
+        </div>
+        <div>
+            <label for="lengths-cut">Lengths Cut: </label>
+            <input type="text" id="lengths-cut" required>
+        </div>
+        <div>
+            <label for="cut-into-1">Cut Into 1: </label>
+            <input type="number" id="cut-into-1" required>
+        </div>
+        <div>
+            <label for="cut-into-2">Cut Into 2: </label>
+            <input type="number" id="cut-into-2" required>
+        </div>
+        <div>
+            <button id="add-btn">Add</button>
+            <button id="export-btn">Export to Excel</button>
+        </div>
+        <table id="cut-sheet-summary">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Lengths Cut</th>
+                    <th>Cut Into</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody id="cut-sheet-body">
+            </tbody>
+        </table>
+    </div>
+    <script src="cuts.js"></script>
+</body>
+</html>
