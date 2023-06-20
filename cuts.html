@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Wood Length Tally</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-link">Board Foot Calculator</a>
+        <a href="tally.html" class="navbar-link">Lumber Tally</a>
+        <a href="cuts.html" class="navbar-link active">Cut Sheet Calculator</a>
+    </nav>
     <div class="container">
+        <div class="tally">
         <h1>Cut Sheet Calculator</h1>
         <div class="instructions">
             <p>Enter the details for each part:</p>
@@ -48,6 +55,7 @@
             <tbody id="cut-sheet-body">
             </tbody>
         </table>
+    </div>
     </div>
     <script src="cuts.js"></script>
 </body>
