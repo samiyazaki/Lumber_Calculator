@@ -40,17 +40,35 @@ body {
   }
   
   button {
-    padding: 12px 24px;
-    font-size: 16px;
+    position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+    margin: 40px 0;
+    color: #03e9f4;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    margin-right: 50px;
     border: none;
-    border-radius: 4px;
-    background-color: #80ced6;
-    color: #fff;
+    border-radius: 3em;
+    background: linear-gradient(to right, transparentize(#03e9f4, 0.6), transparentize(#03e9f4, 0.6) 5%, #03e9f4 5%, #03e9f4 10%, transparentize(#03e9f4, 0.6) 10%, transparentize(#03e9f4, 0.6) 15%, #03e9f4 15%, #03e9f4 20%, transparentize(#03e9f4, 0.6) 20%, transparentize(#03e9f4, 0.6) 25%, #03e9f4 25%, #03e9f4 30%, transparentize(#03e9f4, 0.6) 30%, transparentize(#03e9f4, 0.6) 35%, #03e9f4 35%, #03e9f4 40%, transparentize(#03e9f4, 0.6) 40%, transparentize(#03e9f4, 0.6) 45%, #03e9f4 45%, #03e9f4 50%, transparentize(#03e9f4, 0.6) 50%, transparentize(#03e9f4, 0.6) 55%, #03e9f4 55%, #03e9f4 60%, transparentize(#03e9f4, 0.6) 60%, transparentize(#03e9f4, 0.6) 65%, #03e9f4 65%, #03e9f4 70%, transparentize(#03e9f4, 0.6) 70%, transparentize(#03e9f4, 0.6) 75%, #03e9f4 75%, #03e9f4 80%, transparentize(#03e9f4, 0.6) 80%, transparentize(#03e9f4, 0.6) 85%, #03e9f4 85%, #03e9f4 90%, transparentize(#03e9f4, 0.6) 90%, transparentize(#03e9f4, 0.6) 95%, #03e9f4 95%, #03e9f4 100%);
+    background-size: 100%;
+    transition: background-position 300ms ease-in-out, box-shadow 300ms;
     cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    margin-top: 8px;
-    margin-bottom: 8px;
   }
+  
+  
+  button:hover {
+    background-position: 100px;
+  }
+  
+  button:active {
+    background-position: 0 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
   
   button:hover {
     background-color: #618685;
