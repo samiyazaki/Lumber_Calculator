@@ -83,3 +83,139 @@ function saveAsExcelFile(data, filename) {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 }
+
+// Get the necessary elements from the DOM
+const addItemButton = document.getElementById('add-item-btn');
+const calculateButton = document.getElementById('calculate-btn');
+const cutSheetContainer = document.getElementById('cut-sheet');
+const exportButton = document.getElementById('export-btn');
+const saveButton = document.getElementById('save-btn');
+const calculationList = document.getElementById('calculation-list');
+
+// Add event listeners to buttons
+addItemButton.addEventListener('click', addItem);
+calculateButton.addEventListener('click', calculateCutSheet);
+exportButton.addEventListener('click', exportToExcel);
+saveButton.addEventListener('click', saveCalculation);
+
+// Global variable to store the cut sheet data
+let cutSheetData = [];
+
+// Function to add a new item to the cut sheet
+function addItem() {
+    const itemsContainer = document.getElementById('items-container');
+    const itemIndex = itemsContainer.childElementCount + 1;
+
+    const itemDiv = document.createElement('div');
+    itemDiv.classList.add('item');
+
+    const nameLabel = document.createElement('label');
+    nameLabel.setAttribute('for', `item-${itemIndex}`);
+    nameLabel.textContent = `Item ${itemIndex}:`;
+
+    const nameInput = document.createElement('input');
+    nameInput.setAttribute('type', 'text');
+    nameInput.setAttribute('id', `item-${itemIndex}`);
+    nameInput.classList.add('item-input');
+    nameInput.setAttribute('placeholder', 'Item name');
+    nameInput.required = true;
+
+    const lengthInput = document.createElement('input');
+    lengthInput.setAttribute('type', 'number');
+    lengthInput.setAttribute('id', `length-${itemIndex}`);
+    lengthInput.classList.add('item-input');
+    lengthInput.setAttribute('placeholder', 'Length');
+    lengthInput.required = true;
+
+    itemDiv.appendChild(nameLabel);
+    itemDiv.appendChild(nameInput);
+    itemDiv.appendChild(lengthInput);
+
+    itemsContainer.appendChild(itemDiv);
+}
+
+// Function to calculate the cut sheet
+function calculateCutSheet() {
+    cutSheetData = [];
+
+    const itemsContainer = document.getElementById('items-container');
+    const itemInputs = itemsContainer.getElementsByClassName('item-input');
+
+    for (let i = 0; i < itemInputs.length; i += 2) {
+        const nameInput = itemInputs[i];
+        const lengthInput = itemInputs[i + 1];
+
+        const name = nameInput.value.trim();
+        const length = parseFloat(lengthInput.value);
+
+        if (name && !isNaN(length)) {
+            cutSheetData.push({
+                name,
+                length
+            });
+        }
+    }
+
+    displayCutSheet();
+}
+
+// Function to display the cut sheet
+function displayCutSheet() {
+    cutSheetContainer.innerHTML = '';
+
+    cutSheetData.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.textContent = `${item.name}: ${item.length} ft`;
+        cutSheetContainer.appendChild(itemDiv);
+    });
+}
+
+// Function to export the cut sheet to Excel
+function exportToExcel() {
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(cutSheetData);
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Cut Sheet');
+    XLSX.writeFile(workbook, 'cut_sheet.xlsx');
+}
+
+// Function to save the current calculation
+function saveCalculation() {
+    const savedCalculation = {
+        data: cutSheetData
+    };
+
+    // Get existing calculations from local storage
+    let calculations = JSON.parse(localStorage.getItem('calculations')) || [];
+
+    // Add new calculation to the list
+    calculations.push(savedCalculation);
+
+    // Save the updated list back to local storage
+    localStorage.setItem('calculations', JSON.stringify(calculations));
+
+    displaySavedCalculations();
+
+    // Clear the cut sheet data and reset the input fields
+    cutSheetData = [];
+    document.getElementById('items-container').innerHTML = '';
+
+    alert('Calculation saved!');
+}
+
+// Function to display the saved calculations
+function displaySavedCalculations() {
+    // Get the saved calculations from local storage
+    const calculations = JSON.parse(localStorage.getItem('calculations')) || [];
+
+    // Clear the current contents of the calculation list
+    calculationList.innerHTML = '';
+
+    calculations.forEach((calculation, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Calculation ${index + 1}: ${calculation.data.length} items`;
+        calculationList.appendChild(listItem);
+    });
+}
+
+// Call the function to display any saved calculations when the page loads
+displaySavedCalculations();
