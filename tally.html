@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Wood Length Tally</title>
+    <title>Lumber Tally</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <nav class="navbar">
         <a href="index.html" class="navbar-link">Board Foot Calculator</a>
-        <a href="tally.html" class="navbar-link">Lumber Tally</a>
-        <a href="cuts.html" class="navbar-link active">Cut Sheet Calculator</a>
+        <a href="tally.html" class="navbar-link active">Lumber Tally</a>
+        <a href="cuts.html" class="navbar-link">Cut Sheet Calculator</a>
     </nav>
     <div class="container">
         <div class="tally">
@@ -17,7 +17,7 @@
                 <p>- Length (feet): Enter the length of the wood item in feet.</p>
                 <p>- Number of Pieces: Enter the number of pieces of the wood item.</p>
                 <p>Click on the "Add" button to add the item to the tally.</p>
-                <p>Click on the "Calculate Total" button to find the total length of all the pieces together</p>
+                <p>Click on the "Calculate Total" button to find the total length of all the pieces together.</p>
                 <p>Use the "Export to Excel" button to export the tally data to an Excel spreadsheet.</p>
             </div>
             <div>
@@ -39,6 +39,7 @@
                             <th>Label</th>
                             <th>Length (feet)</th>
                             <th>Number of Pieces</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody id="tally-body"></tbody>
@@ -48,6 +49,7 @@
                 <button id="calculate-btn">Calculate Total</button>
                 <div id="total"></div>
                 <button id="export-btn">Export to Excel</button>
+                <button id="clear-btn">Clear Tally</button>
             </div>
         </div>
     </div>

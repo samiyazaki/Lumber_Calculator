@@ -11,14 +11,21 @@ document.getElementById('add-btn').addEventListener('click', function() {
         const labelCell = document.createElement('td');
         const lengthCell = document.createElement('td');
         const piecesCell = document.createElement('td');
+        const deleteCell = document.createElement('td');
+        const deleteBtn = document.createElement('button');
 
         labelCell.innerText = `Piece ${tallyBody.childElementCount + 1}`;
         lengthCell.innerText = length;
         piecesCell.innerText = pieces;
+        deleteBtn.innerText = 'Delete';
+
+        deleteBtn.classList.add('delete-btn');
 
         row.appendChild(labelCell);
         row.appendChild(lengthCell);
         row.appendChild(piecesCell);
+        deleteCell.appendChild(deleteBtn);
+        row.appendChild(deleteCell);
 
         tallyBody.appendChild(row);
 
@@ -27,6 +34,18 @@ document.getElementById('add-btn').addEventListener('click', function() {
     } else {
         alert('Please enter a length and number of pieces!');
     }
+});
+
+document.addEventListener('click', function(event) {
+    if (event.target && event.target.classList.contains('delete-btn')) {
+        const row = event.target.closest('tr');
+        row.remove();
+    }
+});
+
+document.getElementById('clear-btn').addEventListener('click', function() {
+    const tallyBody = document.getElementById('tally-body');
+    tallyBody.innerHTML = '';
 });
 
 document.getElementById('calculate-btn').addEventListener('click', function() {
@@ -103,5 +122,3 @@ function saveAsExcelFile(data, filename) {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 }
-
-
