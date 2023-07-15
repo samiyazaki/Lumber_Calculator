@@ -108,6 +108,26 @@ document.getElementById('export-btn').addEventListener('click', function() {
     saveAsExcelFile(excelFile, 'tally_data.xlsx');
 });
 
+document.getElementById('save-tally-btn').addEventListener('click', function() {
+    const tallyTable = document.getElementById('tally-summary');
+    const tallyRows = tallyTable.rows;
+    const savedTalliesList = document.getElementById('saved-tallies-list');
+    const savedTally = document.createElement('li');
+    const savedTallyTitle = document.createElement('h3');
+    const savedTallyTable = document.createElement('table');
+
+    savedTallyTitle.innerText = `Tally ${savedTalliesList.childElementCount + 1}`;
+    savedTallyTable.innerHTML = tallyTable.innerHTML;
+
+    savedTally.appendChild(savedTallyTitle);
+    savedTally.appendChild(savedTallyTable);
+    savedTalliesList.appendChild(savedTally);
+
+    // Clear the tally table
+    const tallyBody = document.getElementById('tally-body');
+    tallyBody.innerHTML = '';
+});
+
 function saveAsExcelFile(data, filename) {
     const blob = new Blob([data], { type: 'application/octet-stream' });
     const url = URL.createObjectURL(blob);
